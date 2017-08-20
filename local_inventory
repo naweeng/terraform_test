@@ -1,0 +1,5 @@
+[app]
+localhost connection=local
+
+[lb]
+localhost connection=local
