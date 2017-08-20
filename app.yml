@@ -1,0 +1,15 @@
+- hosts: app
+  sudo: True
+  vars:
+    - http_port: 80
+  roles:
+    - nginx
+
+  post_tasks:
+    - name: Setting up site configs
+      tempalate:
+        src: site.conf
+        dest: /etc/nginx/conf.d/site.conf
+        mode: 0644
+      notify:
+        - restart nginx
