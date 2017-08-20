@@ -7,7 +7,7 @@
 
   post_tasks:
     - name: Setting up loadbalancer configs
-      tempalate:
+      template:
         src: roles/nginx/templates/lb.conf
         dest: /etc/nginx/conf.d/lb.conf
         mode: 0644
