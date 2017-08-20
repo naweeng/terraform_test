@@ -10,3 +10,13 @@
       apt:
         name: php-fpm
         state: installed
+
+    - name: delete default site file
+      file:
+        path: /etc/nginx/sites-available/default
+        state: absent
+
+    - name: Upload custom default to sites-available
+      template:
+        src: roles/nginx/templates/app_default
+        dest: /etc/nginx/sites-available/default

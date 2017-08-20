@@ -1,14 +1,14 @@
 - hosts: lb
   sudo: True
-  vars:
-    - http_port: 80
+  handlers:
+    - include: roles/nginx/handlers/main.yml
   roles:
     - nginx
 
   post_tasks:
     - name: Setting up loadbalancer configs
       tempalate:
-        src: lb.conf
+        src: roles/nginx/templates/lb.conf
         dest: /etc/nginx/conf.d/lb.conf
         mode: 0644
       notify:
