@@ -6,10 +6,15 @@
     - nginx
 
   post_tasks:
+    - name: delete default site file
+      file:
+        path: /etc/nginx/sites-available/default
+        state: absent
+
     - name: Setting up loadbalancer configs
       template:
-        src: roles/nginx/templates/lb.conf
-        dest: /etc/nginx/conf.d/lb.conf
+        src: roles/nginx/templates/lb_default
+        dest: /etc/nginx/sites-available/default
         mode: 0644
       notify:
         - restart nginx
