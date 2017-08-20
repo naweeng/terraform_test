@@ -5,11 +5,8 @@
   roles:
     - nginx
 
-  # post_tasks:
-  #   - name: Setting up site configs
-  #     tempalate:
-  #       src: site.conf
-  #       dest: /etc/nginx/conf.d/site.conf
-  #       mode: 0644
-  #     notify:
-  #       - restart nginx
+  post_tasks:
+    - name: Install php-fpm
+      apt:
+        name: php-fpm
+        state: installed
